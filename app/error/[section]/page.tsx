@@ -1,5 +1,6 @@
 'use cache';
 
+import { useTranslation } from "react-i18next";
 import { notFound } from 'next/navigation';
 import db from '#/lib/db';
 import { Boundary } from '#/ui/boundary';
@@ -16,6 +17,7 @@ export default async function Page({
 }: {
   params: Promise<{ section: string }>;
 }) {
+  const { t } = useTranslation();
   const { section: sectionSlug } = await params;
   const section = db.section.find({ where: { slug: sectionSlug } });
   if (!section) {
@@ -25,7 +27,7 @@ export default async function Page({
   const products = db.product.findMany({ where: { section: section.id } });
 
   return (
-    <Boundary label="[section]/page.tsx">
+    <Boundary label={t("sectionpagetsx")}>
       <div className="flex flex-col gap-4">
         <div className="flex justify-between">
           <h1 className="text-xl font-semibold text-gray-300">

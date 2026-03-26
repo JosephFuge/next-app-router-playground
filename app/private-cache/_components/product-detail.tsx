@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Boundary } from '#/ui/boundary';
 import { SkeletonText } from '#/ui/skeleton';
 import Image from 'next/image';
@@ -8,9 +9,10 @@ export async function ProductDetails({
 }: {
   product: { id: string; name: string; image: string };
 }) {
+  const { t } = useTranslation();
   return (
     <Boundary
-      label="<ProductDetails> (static)"
+      label={t("productdetails_static")}
       size="small"
       animateRerendering={false}
     >

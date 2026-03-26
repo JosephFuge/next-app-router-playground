@@ -1,13 +1,15 @@
+import { useTranslation } from "react-i18next";
 import ContextClickCounter from '#/app/context/context-click-counter';
 import db from '#/lib/db';
 import { Boundary } from '#/ui/boundary';
 import { ProductCard } from '#/ui/product-card';
 
 export default function Page() {
+  const { t } = useTranslation();
   const products = db.product.findMany({ limit: 9 });
 
   return (
-    <Boundary label="page.tsx (Server Environment)">
+    <Boundary label={t("pagetsx_server_environment")}>
       <div className="flex flex-col gap-4">
         <h1 className="text-xl font-semibold text-gray-300">
           All{' '}
