@@ -1,9 +1,11 @@
+import { useTranslation } from "react-i18next";
 import { Boundary } from '#/ui/boundary';
 import { ProductCardSkeleton } from '#/ui/product-card';
 
 export default function Loading() {
+  const { t } = useTranslation();
   return (
-    <Boundary label="loading.tsx">
+    <Boundary label={t("loadingtsx")}>
       <div className="flex flex-col gap-4">
         <h1 className="text-xl font-semibold text-gray-600">All</h1>
 

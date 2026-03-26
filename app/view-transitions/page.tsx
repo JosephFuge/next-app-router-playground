@@ -1,5 +1,6 @@
 'use cache';
 
+import { useTranslation } from "react-i18next";
 import db from '#/lib/db';
 import {
   HorizontalTransition,
@@ -10,6 +11,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 export default async function Page() {
+  const { t } = useTranslation();
   const products = db.product.findMany();
 
   return (
@@ -25,7 +27,7 @@ export default async function Page() {
         'transition-to-detail': 'animate-slide-to-left',
       }}
     >
-      <Boundary label="page.tsx" animateRerendering={true}>
+      <Boundary label={t("pagetsx")} animateRerendering={true}>
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-2 text-xl font-medium text-gray-300">
             <SharedTransition name="navigation-title" share="animate-morph">

@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Suspense } from 'react';
 import db from '#/lib/db';
 import { Boundary } from '#/ui/boundary';
@@ -14,6 +15,7 @@ export default async function Page({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  const { t } = useTranslation();
   const { id } = await params;
   const product = await db.product.find({ where: { id } });
 
@@ -22,7 +24,7 @@ export default async function Page({
   }
 
   return (
-    <Boundary label="page.tsx (without-private)" animateRerendering={false}>
+    <Boundary label={t("pagetsx_withoutprivate")} animateRerendering={false}>
       <div className="flex flex-col gap-8">
         <Link
           href="/private-cache"
@@ -45,15 +47,16 @@ export default async function Page({
 }
 
 async function Recommendations({ productId }: { productId: string }) {
+  const { t } = useTranslation();
   const recommendations = await getRecommendations(productId);
 
   return (
-    <Boundary label="<Recommendations> (Dynamic)" size="small">
+    <Boundary label={t("recommendations_dynamic")} size="small">
       <div className="flex flex-col gap-4">
         <h2 className="text-lg font-semibold text-gray-300">Recommendations</h2>
         {recommendations.length === 0 ? (
           <div className="rounded-lg border border-gray-800 bg-gray-900/50 p-8 text-center">
-            <p className="text-gray-500">No recommendations available</p>
+            <p className="text-gray-500">{t("no_recommendations_available")}</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
@@ -78,9 +81,10 @@ async function getRecommendations(productId: string) {
 }
 
 function RecommendationsSkeleton() {
+  const { t } = useTranslation();
   return (
     <Boundary
-      label="<Recommendations> (Dynamic)"
+      label={t("recommendations_dynamic")}
       size="small"
       color="blue"
       animateRerendering={false}

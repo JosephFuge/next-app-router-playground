@@ -1,5 +1,6 @@
 'use cache';
 
+import { useTranslation } from "react-i18next";
 import db from '#/lib/db';
 import { Boundary } from '#/ui/boundary';
 import { Mdx } from '#/ui/codehike';
@@ -21,6 +22,7 @@ export default async function Layout({
 }: {
   children: React.ReactNode;
 }) {
+  const { t } = useTranslation();
   const demo = db.demo.find({ where: { slug: 'loading' } });
   const sections = db.section.findMany();
 
@@ -29,9 +31,8 @@ export default async function Layout({
       <Boundary label="Demo" kind="solid" animateRerendering={false}>
         <Mdx source={Readme} collapsed={true} />
       </Boundary>
-
       <Boundary
-        label="layout.tsx"
+        label={t("layouttsx")}
         kind="solid"
         animateRerendering={false}
         className="flex flex-col gap-9"

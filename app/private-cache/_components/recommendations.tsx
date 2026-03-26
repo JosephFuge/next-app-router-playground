@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Boundary } from '#/ui/boundary';
 import db from '#/lib/db';
 
@@ -23,9 +24,10 @@ export async function getPersonalizedRecommendations(
 }
 
 export function RecommendationsSkeleton() {
+  const { t } = useTranslation();
   return (
     <Boundary
-      label="<Recommendations> (Private Cacheable + Runtime Prefetch)"
+      label={t("recommendations_private_cacheable__runtime_prefetc")}
       size="small"
       color="blue"
       animateRerendering={false}

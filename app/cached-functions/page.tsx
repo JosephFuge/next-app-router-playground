@@ -1,20 +1,23 @@
+import { useTranslation } from "react-i18next";
 import db from '#/lib/db';
 import { Boundary } from '#/ui/boundary';
 import { ProductCard } from '#/ui/product-card';
 
 export default async function Page() {
+  const { t } = useTranslation();
   return (
-    <Boundary label="page.tsx (statically inferred)">
+    <Boundary label={t("pagetsx_statically_inferred")}>
       <ProductList />
     </Boundary>
   );
 }
 
 async function ProductList() {
+  const { t } = useTranslation();
   const products = await getData();
 
   return (
-    <Boundary label="<ProductList> (statically inferred)" size="small">
+    <Boundary label={t("productlist_statically_inferred")} size="small">
       <div className="flex flex-col gap-4">
         <h1 className="text-xl font-semibold text-gray-300">
           All{' '}

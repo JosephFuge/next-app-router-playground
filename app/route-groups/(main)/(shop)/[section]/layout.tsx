@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { notFound } from 'next/navigation';
 import db from '#/lib/db';
 import { Boundary } from '#/ui/boundary';
@@ -10,6 +11,7 @@ export default async function Layout({
   children: React.ReactNode;
   params: Promise<{ section: string }>;
 }) {
+  const { t } = useTranslation();
   const { section: sectionSlug } = await params;
   const section = db.section.find({ where: { slug: sectionSlug } });
   if (!section) {
@@ -21,7 +23,7 @@ export default async function Layout({
 
   return (
     <Boundary
-      label="(main)/(shop)/[section]/layout.tsx"
+      label={t("mainshopsectionlayouttsx")}
       className="flex flex-col gap-9"
     >
       <Tabs
@@ -31,7 +33,6 @@ export default async function Layout({
           ...categories.map((x) => ({ text: x.name, slug: x.slug })),
         ]}
       />
-
       <div>{children}</div>
     </Boundary>
   );

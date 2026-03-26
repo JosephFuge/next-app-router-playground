@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Boundary } from '#/ui/boundary';
 import React from 'react';
 
@@ -6,5 +7,6 @@ export default async function Layout({
 }: {
   children: React.ReactNode;
 }) {
-  return <Boundary label="(main)(marketing)/layout.tsx">{children}</Boundary>;
+  const { t } = useTranslation();
+  return <Boundary label={t("mainmarketinglayouttsx")}>{children}</Boundary>;
 }

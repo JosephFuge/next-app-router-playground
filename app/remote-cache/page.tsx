@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Suspense } from 'react';
 import db from '#/lib/db';
 import { Boundary } from '#/ui/boundary';
@@ -6,20 +7,22 @@ import { cacheTag } from 'next/cache';
 import { connection } from 'next/server';
 
 export default async function Page() {
+  const { t } = useTranslation();
   return (
-    <Boundary label="page.tsx (statically inferred)" animateRerendering={false}>
+    <Boundary label={t("pagetsx_statically_inferred")} animateRerendering={false}>
       <ProductList />
     </Boundary>
   );
 }
 
 async function ProductList() {
+  const { t } = useTranslation();
   // DEMO: Call the cached data function
   const products = await getData();
 
   return (
     <Boundary
-      label="<ProductList> (statically inferred)"
+      label={t("productlist_statically_inferred")}
       size="small"
       animateRerendering={false}
     >
@@ -65,6 +68,7 @@ async function getData() {
 }
 
 async function ProductPrice({ productId }: { productId: string }) {
+  const { t } = useTranslation();
   // DEMO: Ensure this component is never cached in the static shell
   // by requiring a connection. This makes it dynamic.
   await connection();
@@ -75,9 +79,9 @@ async function ProductPrice({ productId }: { productId: string }) {
   const price = await getProductPrice(productId);
 
   return (
-    <Boundary label="<ProductPrice> (Remote Cacheable)" size="small">
+    <Boundary label={t("productprice_remote_cacheable")} size="small">
       <div className="text-center text-sm">
-        <span className="text-gray-400">Price: </span>
+        <span className="text-gray-400">{t("price")}</span>
         <span className="font-semibold text-green-400">${price}</span>
       </div>
     </Boundary>
@@ -85,9 +89,10 @@ async function ProductPrice({ productId }: { productId: string }) {
 }
 
 function ProductPriceSkeleton() {
+  const { t } = useTranslation();
   return (
     <Boundary
-      label="<ProductPrice> (Remote Cacheable)"
+      label={t("productprice_remote_cacheable")}
       size="small"
       color="blue"
       animateRerendering={false}

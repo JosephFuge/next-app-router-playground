@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import db from '#/lib/db';
 import { Boundary } from '#/ui/boundary';
 import { ProductCard } from '#/ui/product-card';
@@ -7,18 +8,18 @@ import SessionButton from './session-button';
 import ProductLink from './product-link';
 
 export async function ProductList() {
+  const { t } = useTranslation();
   const products = await getProducts();
 
   return (
     <Boundary
-      label="<ProductList> (statically inferred)"
+      label={t("productlist_statically_inferred")}
       size="small"
       animateRerendering={false}
     >
       <div className="flex flex-col gap-4">
         <div className="flex justify-between">
-          <h1 className="text-xl font-semibold text-gray-300">
-            Available Products{' '}
+          <h1 className="text-xl font-semibold text-gray-300">{t("available_products")}{' '}
             <span className="font-mono tracking-tighter text-gray-600">
               ({products.length})
             </span>
@@ -56,18 +57,17 @@ export async function ProductList() {
 }
 
 export function ProductListSkeleton() {
+  const { t } = useTranslation();
   return (
     <Boundary
-      label="<ProductList> (statically inferred)"
+      label={t("productlist_statically_inferred")}
       size="small"
       color="blue"
       animateRerendering={false}
     >
       <div className="flex flex-col gap-4">
         <div className="h-24 animate-pulse rounded-lg bg-gray-800" />
-        <h1 className="text-xl font-semibold text-gray-300">
-          Available Products
-        </h1>
+        <h1 className="text-xl font-semibold text-gray-300">{t("available_products")}</h1>
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
           {[1, 2, 3, 4, 5, 6].map((i) => (
             <div
