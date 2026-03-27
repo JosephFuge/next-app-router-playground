@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Boundary } from '#/ui/boundary';
 import { ExternalLink } from '#/ui/external-link';
 import { Suspense } from 'react';
@@ -13,6 +14,7 @@ const options = [
 export const dynamic = 'force-dynamic';
 
 export default async function Page(props: { searchParams: Promise<any> }) {
+  const { t } = useTranslation();
   const searchParams = await props.searchParams;
   return (
     <div className="prose prose-sm prose-invert max-w-none">
@@ -20,13 +22,11 @@ export default async function Page(props: { searchParams: Promise<any> }) {
         Updating <code>searchParams</code>
       </h1>
       <p>
-        The <code>useSearchParams</code> hook returns a read only version of{' '}
-        <code>URLSearchParams</code>. You can use{' '}
-        <code>useRouter&#40;&#41;</code> or <code>&lt;Link&gt;</code> to set new{' '}
-        <code>searchParams</code>. After a navigation is performed, the current{' '}
-        <code>page.js</code> will receive an updated <code>searchParams</code>{' '}
-        prop.
-      </p>
+        The <code>useSearchParams</code>{t("hook_returns_a_read_only_version_of")}{' '}
+        <code>URLSearchParams</code>{t("_you_can_use")}{' '}
+        <code>useRouter&#40;&#41;</code> or <code>&lt;Link&gt;</code>{t("to_set_new")}{' '}
+        <code>searchParams</code>{t("_after_a_navigation_is_performed_the_current")}{' '}
+        <code>page.js</code>{t("will_receive_an_updated")}<code>searchParams</code>{' '}{t("prop")}</p>
       <div className="mt-12 space-y-12">
         <div className="space-y-4">
           <Boundary color="blue" label={['From the Client']}>

@@ -1,5 +1,6 @@
 'use cache';
 
+import { useTranslation } from "react-i18next";
 import { notFound } from 'next/navigation';
 import db from '#/lib/db';
 import { Boundary } from '#/ui/boundary';
@@ -12,6 +13,7 @@ export default async function Layout({
   children: React.ReactNode;
   params: Promise<{ section: string }>;
 }) {
+  const { t } = useTranslation();
   const { section: sectionSlug } = await params;
   const section = db.section.find({ where: { slug: sectionSlug } });
   if (!section) {
@@ -22,7 +24,7 @@ export default async function Layout({
   const categories = db.category.findMany({ where: { section: section?.id } });
 
   return (
-    <Boundary label="[section]/layout.tsx" className="flex flex-col gap-9">
+    <Boundary label={t("sectionlayouttsx")} className="flex flex-col gap-9">
       <Tabs
         basePath={`/${demo.slug}/${section.slug}`}
         items={[
@@ -30,7 +32,6 @@ export default async function Layout({
           ...categories.map((x) => ({ text: x.name, slug: x.slug })),
         ]}
       />
-
       <div>{children}</div>
     </Boundary>
   );

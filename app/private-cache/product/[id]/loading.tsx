@@ -1,12 +1,14 @@
+import { useTranslation } from "react-i18next";
 import { Boundary } from '#/ui/boundary';
 
 export default function Loading() {
+  const { t } = useTranslation();
   return (
-    <Boundary label="loading.tsx" animateRerendering={false}>
+    <Boundary label={t("loadingtsx")} animateRerendering={false}>
       <div className="flex flex-col gap-8">
         {/* Product Details Skeleton */}
         <Boundary
-          label="<ProductDetails> (static)"
+          label={t("productdetails_static")}
           size="small"
           color="blue"
           animateRerendering={false}
@@ -24,7 +26,7 @@ export default function Loading() {
 
         {/* Recommendations Skeleton */}
         <Boundary
-          label="<Recommendations>"
+          label={t("recommendations")}
           size="small"
           color="blue"
           animateRerendering={false}

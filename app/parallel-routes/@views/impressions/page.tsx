@@ -1,14 +1,15 @@
+import { useTranslation } from "react-i18next";
 import { Boundary } from '#/ui/boundary';
 
 export default function Page() {
+  const { t } = useTranslation();
   return (
     <Boundary
       label="@views/impressions/page.tsx"
       size="small"
       className="flex flex-col gap-4"
     >
-      <h1 className="font-semibold text-gray-300">View impression stats</h1>
-
+      <h1 className="font-semibold text-gray-300">{t("view_impression_stats")}</h1>
       <div className="flex flex-col gap-2">
         <div className="h-2 w-4/5 rounded-full bg-gray-800" />
         <div className="h-2 w-1/3 rounded-full bg-gray-800" />

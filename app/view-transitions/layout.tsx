@@ -1,5 +1,6 @@
 'use cache';
 
+import { useTranslation } from "react-i18next";
 import { Boundary } from '#/ui/boundary';
 import { Mdx } from '#/ui/codehike';
 import { Metadata } from 'next';
@@ -21,13 +22,14 @@ export default async function Layout({
 }: {
   children: React.ReactNode;
 }) {
+  const { t } = useTranslation();
   return (
     <>
       <Boundary label="Demo" kind="solid" animateRerendering={false}>
         <Mdx source={readme} collapsed={undefined} />
       </Boundary>
       <Boundary
-        label="layout.tsx"
+        label={t("layouttsx")}
         kind="solid"
         animateRerendering={false}
         className="flex flex-col gap-9"

@@ -1,12 +1,14 @@
+import { useTranslation } from "react-i18next";
 import db from '#/lib/db';
 import { Boundary } from '#/ui/boundary';
 import { Tab } from '#/ui/tabs';
 
 export default function Page() {
+  const { t } = useTranslation();
   const demo = db.demo.find({ where: { slug: 'route-groups' } });
 
   return (
-    <Boundary label="(checkout)/page.tsx" className="flex flex-col gap-9">
+    <Boundary label={t("checkoutpagetsx")} className="flex flex-col gap-9">
       <div className="flex">
         <Tab item={{ text: 'Back', slug: demo.slug }} />
       </div>
