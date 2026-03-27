@@ -1,9 +1,11 @@
 'use client';
 
+import { useTranslation } from "react-i18next";
 import Button from '#/ui/button';
 import React from 'react';
 
 export default function BuggyButton() {
+  const { t } = useTranslation();
   const [clicked, setClicked] = React.useState(false);
 
   if (clicked) {
@@ -16,8 +18,6 @@ export default function BuggyButton() {
       onClick={() => {
         setClicked(true);
       }}
-    >
-      Trigger Error
-    </Button>
+    >{t("trigger_error")}</Button>
   );
 }

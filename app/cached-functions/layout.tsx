@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Metadata } from 'next';
 import db from '#/lib/db';
 import { Boundary } from '#/ui/boundary';
@@ -19,14 +20,14 @@ export default async function Layout({
 }: {
   children: React.ReactNode;
 }) {
+  const { t } = useTranslation();
   return (
     <>
       <Boundary label="Demo" kind="solid" animateRerendering={false}>
         <Mdx source={readme} collapsed={true} />
       </Boundary>
-
       <Boundary
-        label="layout.tsx (statically inferred)"
+        label={t("layouttsx_statically_inferred")}
         kind="solid"
         animateRerendering={false}
       >

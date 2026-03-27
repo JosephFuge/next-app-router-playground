@@ -1,3 +1,4 @@
+import { useTranslation } from "react-i18next";
 import { Boundary } from '#/ui/boundary';
 import { Mdx } from '#/ui/codehike';
 import { CounterProvider } from 'app/context/counter-context';
@@ -16,19 +17,19 @@ export default async function Layout({
 }: {
   children: React.ReactNode;
 }) {
+  const { t } = useTranslation();
   return (
     <>
       <Boundary label="Demo" kind="solid" animateRerendering={false}>
         <Mdx source={Readme} collapsed={true} />
       </Boundary>
-
       <Boundary
-        label="layout.tsx (Server Environment)"
+        label={t("layouttsx_server_environment")}
         kind="solid"
         animateRerendering={false}
       >
         <Boundary
-          label="Context Provider (Client Environment)"
+          label={t("context_provider_client_environment")}
           color="blue"
           animateRerendering={false}
         >

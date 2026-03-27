@@ -1,6 +1,8 @@
+import { useTranslation } from "react-i18next";
 import { Boundary } from '#/ui/boundary';
 
 export default function Byline() {
+  const { t } = useTranslation();
   return (
     <Boundary kind="solid" animateRerendering={false}>
       <div className="flex gap-4 text-sm font-medium text-gray-600">
@@ -9,9 +11,7 @@ export default function Byline() {
           href="https://github.com/vercel/next-app-router-playground"
           target="_blank"
           rel="noreferrer"
-        >
-          Source code
-        </a>
+        >{t("source_code")}</a>
         <span className="text-gray-800">/</span>
         <a
           className="transition-colors hover:text-gray-200"
@@ -27,10 +27,8 @@ export default function Byline() {
           href="https://vercel.com/templates/next.js/app-directory"
           target="_blank"
           rel="noreferrer"
-        >
-          Deploy on
-          <svg
-            aria-label="Vercel logotype"
+        >{t("deploy_on")}<svg
+            aria-label={t("vercel_logotype")}
             role="img"
             className="h-3 text-white"
             viewBox="0 0 262 52"

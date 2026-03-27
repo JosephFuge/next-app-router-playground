@@ -1,9 +1,11 @@
+import { useTranslation } from "react-i18next";
 import db from '#/lib/db';
 import { Boundary } from '#/ui/boundary';
 import { ProductCard } from '#/ui/product-card';
 import { connection } from 'next/server';
 
 export default async function Page() {
+  const { t } = useTranslation();
   // DEMO:
   // This page would normally be prerendered at build time because it doesn't use dynamic APIs.
   // That means the loading state wouldn't show. To force one:
@@ -13,7 +15,7 @@ export default async function Page() {
   const products = db.product.findMany({ limit: 9 });
 
   return (
-    <Boundary label="page.tsx">
+    <Boundary label={t("pagetsx")}>
       <div className="flex flex-col gap-4">
         <h1 className="text-xl font-semibold text-gray-300">
           All{' '}

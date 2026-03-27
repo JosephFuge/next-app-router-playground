@@ -1,5 +1,6 @@
 'use cache';
 
+import { useTranslation } from "react-i18next";
 import db from '#/lib/db';
 import {
   HorizontalTransition,
@@ -24,6 +25,7 @@ export default async function Page({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  const { t } = useTranslation();
   const { id } = await params;
   const product = db.product.find({ where: { id } });
   if (!product) {
@@ -51,7 +53,7 @@ export default async function Page({
         'transition-forwards': 'animate-slide-to-left',
       }}
     >
-      <Boundary label="posts/[id]/page.tsx" animateRerendering={true}>
+      <Boundary label={t("postsidpagetsx")} animateRerendering={true}>
         <div className="grid gap-4">
           <Link
             href={`/${demo.slug}`}

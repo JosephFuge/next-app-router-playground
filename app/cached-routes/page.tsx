@@ -1,25 +1,28 @@
 'use cache';
 
+import { useTranslation } from "react-i18next";
 import db from '#/lib/db';
 import { Boundary } from '#/ui/boundary';
 import { ProductCard } from '#/ui/product-card';
 
 export default async function Page() {
+  const { t } = useTranslation();
   return (
-    <Boundary label="page.tsx (Cacheable)">
+    <Boundary label={t("pagetsx_cacheable")}>
       <ProductList />
     </Boundary>
   );
 }
 
 async function ProductList() {
+  const { t } = useTranslation();
   // DEMO: Add a delay to simulate a slow data request
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
   const products = db.product.findMany({ limit: 9 });
 
   return (
-    <Boundary label="<ProductList>" size="small">
+    <Boundary label={t("productlist")} size="small">
       <div className="flex flex-col gap-4">
         <h1 className="text-xl font-semibold text-gray-300">
           All{' '}
